@@ -7,15 +7,14 @@ A polyfill for Element.prototype.scrollLeftMax() and Element.prototype.scrollTop
   
   the support depend on Object.defineProperties() support.
   
-    look here https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#compatNote_1
+look here https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#compatNote_1
 
   if that's a problem you can just add the functions separatly no polyfill. 
   look at  bestSupportNoPolyFill.js file 
 
 
 here the polyfill
-  "
-  (function(elmProto){
+  "(function(elmProto){
     if ('scrollTopMax' in elmProto) {
         return;
     }
@@ -32,18 +31,15 @@ here the polyfill
         }
     });
 }
-)(Element.prototype);
-"
+)(Element.prototype);"
 
 here the defining the function separatly solution that have a great support IE6+
  (i added just an 'i' in the end, so no conflict with the existing one in mozilla)
-"
-(function (elmProto) {
+"(function (elmProto) {
     elmProto.scrollTopMaxi = function () {
         return this.scrollTop - this.clientHeight;
     };
     elmProto.scrollLeftMaxi = function () {
         return this.scrollLeft - this.clientLeft;
     };
-})(Element.prototype);
-"
+})(Element.prototype);"
